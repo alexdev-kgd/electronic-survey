@@ -1,12 +1,15 @@
 import logo from './logo.svg';
+import { BrowserRouter as Router } from 'react-router-dom'
 import './App.sass';
 import WelcomePage from './components/welcome-page';
 
 function App() {
   return (
-    <div className="App">
-        <WelcomePage></WelcomePage>
-    </div>
+    <Router>
+      <div className="App">
+          <WelcomePage></WelcomePage>
+      </div>
+    </Router>
   );
 }
 
