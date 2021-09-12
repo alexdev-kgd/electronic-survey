@@ -1,7 +1,7 @@
 import React from 'react'
 import Button from '@material-ui/core/Button'
 import './welcome-page.sass'
-import { Link, Route } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 const WelcomePage = () => {
     return (
@@ -13,7 +13,6 @@ const WelcomePage = () => {
                         variant="contained"
                         color="primary">Start Survey</Button>
             </Link>
-            <Route path="/enterData" />
         </div>
     )
 }
