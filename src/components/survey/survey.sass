@@ -1,18 +1,27 @@
+@import '../../vars.sass'
+
 .survey
-    width: 850px
+    width: 80%
 
     &__info-block,
     &__container
-        width: inherit
-        padding: 35px 25px 0 25px
+        box-sizing: border-box
+        width: 100%
         background-color: #fff
+        padding: 10px 25px 0 25px
+
+        @media (min-width: $mobile)
+            padding: 25px 25px 0 25px
 
     &__info-block
-        font-size: 20px
-        margin-top: 10px
+        font-size: 14px
         margin-bottom: 25px
-        padding-bottom: 25px
-        line-height: 21pt
+        padding-bottom: 10px
+
+        @media (min-width: $mobile)
+            padding-bottom: 25px
+            font-size: 20px
+            line-height: 21pt
 
     &__submit-block
         padding: 20px 0
@@ -27,14 +36,26 @@
         border-bottom: 1px solid #ccc
 
         &:first-child
-            padding-top: 0
+
+            @media (min-width: $mobile)
+                padding-top: 0
 
         &:last-child
             border-bottom: none
     
     &__question
-        font-size: 18px
+        font-size: 14px
+
+        @media (min-width: $mobile)
+            font-size: 18px
     
     &__answers
+        width: 100%
+        margin-top: 10px
+
+        @media (min-width: $mobile)
+            margin-top: 0
+
+
         FormControlLabel
             margin-right: 50px
