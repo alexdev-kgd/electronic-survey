@@ -2,7 +2,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import './App.sass';
 import WelcomePage from './components/welcome-page/welcome-page';
 import EnterData from './components/enter-data/enter-data';
-import Survey from './components/survey/survey';
+import ProtectedRoute from './shared/protectedRoute';
 
 function App() {
   return (
@@ -15,9 +15,7 @@ function App() {
           <Route path="/enterData">
             <EnterData />
           </Route>
-          <Route path="/survey">
-            <Survey />
-          </Route>
+          <ProtectedRoute path="/survey" />
         </Switch>
       </div>
     </Router>

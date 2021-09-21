@@ -1,12 +1,16 @@
 import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button'
+import { Button } from '@material-ui/core'
 import { useState } from 'react'
 import './enter-data.sass'
+import { useHistory } from 'react-router';
+import isUserAuthenticated from '../../shared/isUserAuthenticated';
 
 const EnterData = () => {
     const [ firstName, setFirstName] = useState('')
     const [ lastName, setLastName] = useState('')
     const [ age, setAge] = useState('')
+
+    const history = useHistory()
 
     let submitForm = event => {
         event.preventDefault()
@@ -14,6 +18,8 @@ const EnterData = () => {
         localStorage.setItem("FirstName", firstName)
         localStorage.setItem("LastName", lastName)
         localStorage.setItem("Age", age)
+
+        if(isUserAuthenticated()) history.push('/survey')
     }
 
     let changeFirstNameHandler = event => {
