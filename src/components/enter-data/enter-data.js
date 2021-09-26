@@ -1,7 +1,7 @@
 /* eslint-disable no-use-before-define */
 import React from 'react'
 import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button'
+import { Button } from '@material-ui/core'
 import { useState } from 'react'
 import './enter-data.sass'
 
