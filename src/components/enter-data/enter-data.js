@@ -4,6 +4,7 @@ import TextField from '@material-ui/core/TextField';
 import { Button } from '@material-ui/core'
 import { useState } from 'react'
 import './enter-data.sass'
+import LOCAL_STORAGE_NAMES from '../../shared/localStorage';
 
 const EnterData = () => {
     const [values, setValues] = useState({})
@@ -11,17 +12,17 @@ const EnterData = () => {
 
     let inputFields = [
         {
-            name: "firstName",
+            name: LOCAL_STORAGE_NAMES.FIRST_NAME,
             id: "form__first-name",
             label: "Your First Name"
         },
         {
-            name: "lastName",
+            name: LOCAL_STORAGE_NAMES.LAST_NAME,
             id: "form__last-name",
             label: "Your Last Name"
         },
         {
-            name: "age",
+            name: LOCAL_STORAGE_NAMES.AGE,
             id: "form__age",
             label: "Your Age"
         },
