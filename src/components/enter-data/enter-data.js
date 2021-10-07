@@ -5,10 +5,13 @@ import { Button } from '@material-ui/core'
 import { useState } from 'react'
 import './enter-data.sass'
 import LOCAL_STORAGE_NAMES from '../../shared/localStorage';
+import { useHistory } from 'react-router';
 
 const EnterData = () => {
     const [values, setValues] = useState({})
     const [errors, setErrors] = useState({})
+
+    const history = useHistory()
 
     let inputFields = [
         {
@@ -35,15 +38,16 @@ const EnterData = () => {
             for (let key of Object.keys(values)) {
                 localStorage.setItem(key, values[key])
             }
+            history.push("/survey")
         }
     }
 
-    let validateObjectValues = (item, conditional) => Object.values(item).every(conditional.bind(this));
+    let validateObjectValues = (item, conditional) => Object.values(item).every(conditional.bind(this))
 
     let isFormValid = _ => {
         if(Object.values(values).length <= 0) return false
         const isError = validateObjectValues(errors, (x) => x === "")
-        const isFilled = validateObjectValues(values, (x) => x.length > 0);
+        const isFilled = validateObjectValues(values, (x) => x.length > 0)
 
         return isError && isFilled
     }
