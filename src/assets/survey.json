@@ -1,0 +1,31 @@
+[
+    {
+        "question": "Lorem ipsum dolor sit amet?",
+        "type": "text"
+    },
+    {
+        "question": "Lorem ipsum dolor sit amet?",
+        "type": "textarea"
+    },
+    {
+        "question": "Lorem ipsum dolor sit amet?",
+        "type": "checkbox",
+        "answers": [
+            { "text": "Yes, lorem ipsum", "points": 50 },
+            { "text": "No, dolor sit amet", "points": 0 }
+        ]
+    },
+    {
+        "question": "Lorem ipsum dolor sit amet?",
+        "type": "numeric",
+        "points": 50
+    },
+    {
+        "question": "Lorem ipsum dolor sit amet?",
+        "type": "checkbox",
+        "answers": [
+            { "text": "Yes, lorem ipsum", "points": 50 },
+            { "text": "No, dolor sit amet", "points": 0 }
+        ]
+    }
+]
