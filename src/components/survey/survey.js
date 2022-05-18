@@ -2,50 +2,102 @@ import { FormControl, FormControlLabel, RadioGroup, Radio, Button } from "@mater
 import TextField from '@material-ui/core/TextField';
 import './survey.sass'
 import data from '../../assets/survey.json';
+import { useState } from "react";
 
 const Survey = () => {
     const placeholder = "Enter text..."
     const textFieldVariant = "outlined"
+    
+    const [inputSet, setInputValue] = useState([]);
 
-    const getCheckboxAnswers = (answers) => {
+    const onInputChange = (e) => {
+        const { type, name, value } = e.target;
+        // const isChecked = type === 'radio' ? e.target.checked : undefined;
+        const newObjectStructure = {
+            name: name,
+            type: type,
+            value: value,
+        };
+
+        const filteredInput = inputSet.filter(input => input.name === name);
+
+        if (filteredInput.length > 0) {
+            const restState = inputSet.filter(input => input.name !== name);
+            setInputValue([
+                ...restState, 
+                newObjectStructure
+            ]);
+        } else {
+            setInputValue([
+                ...inputSet,
+                newObjectStructure
+            ]);
+        }
+    }
+
+    const inputReturnValue = (index) => {
+        const filtered = inputSet.filter(item => item.name === 'question-'+index)[0]?.value;
+        console.log(filtered);
+        return filtered || "";
+    }
+
+    const submitForm = event => {
+        event.preventDefault()
+    }
+
+    const getCheckboxAnswers = (answers, groupId) => {
         return answers.map((answer, index) => {
             return (
-                <FormControlLabel key={index} value={index} control={<Radio color="primary" />} label={answer.text} />
+                <FormControlLabel key={index}
+                                  value={answer.text}
+                                  checked={inputReturnValue(groupId) === answer.text}
+                                  control={<Radio color="primary" />}
+                                  label={answer.text}
+                                  />
             )
         })
     }
 
-    const getElementByType = (data) => {
+    const getElementByType = (data, index) => {
         switch (data.type) {
             case 'text':
                 return (
-                    <TextField name={"question-" + data.id}
+                    <TextField name={"question-" + index}
                                variant={textFieldVariant}
                                placeholder={placeholder}
+                               value={inputReturnValue(index)}
+                               onChange={onInputChange}
                     />
                 )
             case 'textarea':
-                return (
-                    <TextField name={"question-" + data.id}
+                return ( 
+                    <TextField name={"question-" + index}
                                multiline
                                rows={5}
                                variant={textFieldVariant}
                                placeholder={placeholder}
+                               value={inputReturnValue(index)}
+                               onChange={onInputChange}
                     />
                 )
             case 'numeric':
                 return (
-                    <TextField name={"question-" + data.id}
+                    <TextField name={"question-" + index}
                                 type="number"
                                 inputProps={{ min: "0", max: "100", step: "1" }}
                                 variant={textFieldVariant}
                                 placeholder={placeholder}
+                                value={inputReturnValue(index)}
+                                onChange={onInputChange}
                     />
                 )
             case 'checkbox':
                 return (
-                    <RadioGroup row name={"question-" + data.id}>
-                        { getCheckboxAnswers(data.answers) }
+                    <RadioGroup row 
+                                name={"question-" + index}
+                                onChange={onInputChange}
+                                value={""}>
+                        { getCheckboxAnswers(data.answers, index) }
                     </RadioGroup>
                 )
             default:
@@ -53,12 +105,12 @@ const Survey = () => {
         }
     }
 
-    const readJSONfile = data.map((data) => {
+    const readJSONfile = data.map((data, index) => {
         return (
-            <div className="survey__block" key={data.id}>
+            <div className="survey__block" key={index}>
                 <p className="survey__question">{data.question}</p>
                 <FormControl className="survey__answers" component="fieldset">
-                    { getElementByType(data) }
+                    { getElementByType(data, index) }
                 </FormControl>
             </div>
         )
@@ -75,7 +127,8 @@ const Survey = () => {
             <div className="survey__container">
                 { readJSONfile }
                 <div className="survey__submit-block">
-                    <Button className="form__submit-btn"
+                    <Button onClick={submitForm}
+                            className="form__submit-btn"
                             type="submit"
                             variant="contained"
                             color="primary">Submit</Button>

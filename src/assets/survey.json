@@ -1,16 +1,13 @@
 [
     {
-        "id": 1,
         "question": "Lorem ipsum dolor sit amet?",
         "type": "text"
     },
     {
-        "id": 2,
         "question": "Lorem ipsum dolor sit amet?",
         "type": "textarea"
     },
     {
-        "id": 3,
         "question": "Lorem ipsum dolor sit amet?",
         "type": "checkbox",
         "answers": [
@@ -19,13 +16,11 @@
         ]
     },
     {
-        "id": 4,
         "question": "Lorem ipsum dolor sit amet?",
         "type": "numeric",
         "points": 50
     },
     {
-        "id": 5,
         "question": "Lorem ipsum dolor sit amet?",
         "type": "checkbox",
         "answers": [
