@@ -1,11 +1,9 @@
 import { BrowserRouter as Route, Redirect } from 'react-router-dom'
-import Survey from '../components/survey/survey'
-import isUserAuthenticated from './isUserAuthenticated'
 
-const ProtectedRoute = ({route}) => {
-    return (isUserAuthenticated()) 
-            ? <Route path={route}><Survey /></ Route>
-            : <Redirect to="/enterData"/>
+const ProtectedRoute = (props) => {
+    return (props.predicate)
+            ? <Route path={props.route}>{props.children}</ Route>
+            : <Redirect to={props.fallbackRoute}/>
 }
 
 export default ProtectedRoute

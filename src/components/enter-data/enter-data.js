@@ -6,6 +6,7 @@ import { useState } from 'react'
 import './enter-data.sass'
 import LOCAL_STORAGE_NAMES from '../../shared/localStorage';
 import { useHistory } from 'react-router';
+import { ROUTE_NAMES } from '../../shared/const/routeNames';
 
 const EnterData = () => {
     const [values, setValues] = useState({})
@@ -38,7 +39,7 @@ const EnterData = () => {
             for (let key of Object.keys(values)) {
                 localStorage.setItem(key, values[key])
             }
-            history.push("/survey")
+            history.push(ROUTE_NAMES.SURVEY)
         }
     }
 

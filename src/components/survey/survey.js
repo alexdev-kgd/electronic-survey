@@ -4,6 +4,8 @@ import './survey.sass'
 import data from '../../assets/survey.json';
 import { useState } from "react";
 import { useHistory } from 'react-router';
+import { clearLocalStorage, getLocalStorageData } from "../../shared/localStorage";
+import { ROUTE_NAMES } from "../../shared/const/routeNames";
 
 const Survey = () => {
     const history = useHistory()
@@ -90,9 +92,13 @@ const Survey = () => {
 
     const submitForm = event => {
         event.preventDefault()
-        console.log(inputSet);
         if (isFormValid) {
-            history.push("/finish-page")
+            const lcData = getLocalStorageData();
+            console.log(lcData);
+            console.log(inputSet);
+            clearLocalStorage();
+            localStorage.setItem('finished', 'true');
+            history.push(ROUTE_NAMES.FINISH_PAGE)
         }
     }
 
